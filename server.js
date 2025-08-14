@@ -31,9 +31,10 @@ let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
     next(null, false);
   }
 });
-
+passport.use(strategy);
 app.use(express.json());
 app.use(cors());
+app.use(passport.initialize());
 
 app.post("/api/user/register", (req, res) => {
   userService
